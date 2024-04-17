@@ -4,7 +4,7 @@ int[][] grid;
 int n = 15;
 
 void setup(){
-  size(800, 800); // Define o tamanho da janela de visualização.
+  size(600, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
   grid = criaGrid(); // Inicializa a grade com valores aleatórios.
 }
@@ -50,8 +50,28 @@ void mostraGrid(){
   }
 }
 
+void insereJogador() { 
+  float meioX = width / 2; //calcula o centro
+  float meioY = height /2; //calcula o centro
+  
+  float lc = width / (float)n; // Calcula a largura de cada célula.
+  float hc = height / (float)n; // Calcula a altura de cada célula.
+  
+  int y = int(meioY/ lc); // Calcula a coluna do jogador na grade.
+  int x = int(meioX / hc); // Calcula a linha do jogador na grade.
+  
+  fill(#0F2EF0);
+  rect(x * lc, y * hc, lc, hc);
+}
+  
+void movimentarJogador() {
+  
+}
+
+
 void draw(){
   mostraGrid(); // Mostra a grade atual na janela.
+  insereJogador();
   
   // Se o mouse é pressionado, reinicializa a grade com valores aleatórios.
   if(mousePressed) grid = criaGrid();
