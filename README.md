@@ -8,8 +8,10 @@ Inicialmente as células do grid devem ser inicializadas como grama (probabilida
 O jogador deve poder se movimentar no grid pulando para as células adjacentes usando as setas do teclado
 
 
-  ⬆️
+   ⬆️
+   
 ⬅️ 🏌️ ➡️
+
   ⬇️
 
 
@@ -23,8 +25,11 @@ Na tela deve ser mostrado o timer no canto superior esquerdo e o score no canto 
 
 # Divisão de Tarefas
 Aluno 1 - Criação do grid, movimentação do jogador
+
 Aluno 2 - Criação do inventário usando uma lista (implementação própria)
+
 Aluno 3 - Criação/Atualização do Timer e do Score
+
 Aluno 4 - Implementação de um algoritmo de ordenação no inventário e tela final do jogo 
 
 # Pontos Extra
