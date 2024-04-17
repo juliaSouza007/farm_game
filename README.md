@@ -8,11 +8,11 @@ Inicialmente as células do grid devem ser inicializadas como grama (probabilida
 O jogador deve poder se movimentar no grid pulando para as células adjacentes usando as setas do teclado
 
 
-   ⬆️
+     ⬆️
    
 ⬅️ 🏌️ ➡️
 
-  ⬇️
+     ⬇️
 
 
 Quando o jogador entrar em uma célula com um item, o item deve ser coletado e ir para o inventário do jogador. O jogador não pode se mover para uma célula de árvore.
