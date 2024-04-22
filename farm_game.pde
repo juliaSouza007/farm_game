@@ -19,8 +19,10 @@ int[][] criaGrid(){
   for(int i = 0; i < n; i++){
     for(int j = 0; j < n; j++){
       //m[i][j] = int(random(3)); // Atribui um valor aleatório entre 0 e 2 a cada célula.
-      m[i][j] = (random(1) < 0.45)? 1: m[i][j];
-      m[i][j] = (random(1) < 0.1)? 2: m[i][j];
+      m[i][j] = (random(1) < 0.3)? 1: m[i][j];
+      m[i][j] = (random(1) < 0.3)? 2: m[i][j];
+      m[i][j] = (random(1) < 0.3)? 3: m[i][j];
+      m[i][j] = (random(1) < 0.1)? 4: m[i][j];
     }
   }
   return m;
@@ -41,10 +43,13 @@ void mostraGrid(){
           fill(#2ECE37); // Grama Baixa.
           break;
         case 2:
-          fill(#8E5800); // Árvore.
+          fill(#3FB229); // Grama Media.
           break;
-        default:
-          fill(#008E08); // Grama Alta.
+        case 3:
+          fill(#008E08); // Grama Alta
+          break;
+        case 4:
+          fill(#8E5800); // Árvore.
           break;
       }
       // Desenha o retângulo representando a célula.
@@ -81,7 +86,7 @@ void moverJogador() {
     // Verifica se a nova posição é válida antes de atualizar a posição do jogador
     if (novaPosX != jogadorX || novaPosY != jogadorY) {
       // Verifica se o jogador não vai atravessar uma árvore
-      if (grid[novaPosY][novaPosX] != 2) {
+      if (grid[novaPosY][novaPosX] != 4) {
         jogadorX = novaPosX;
         jogadorY = novaPosY;
       }
