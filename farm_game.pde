@@ -2,11 +2,14 @@
 int[][] grid;
 // Número de células em cada dimensão da grade.
 int n = 15;
+// Posição do jogador na grade
+int jogadorX, jogadorY;
 
 void setup(){
   size(600, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
   grid = criaGrid(); // Inicializa a grade com valores aleatórios.
+  jogadorX = jogadorY = n / 2; // Posiciona o jogador no centro da grade inicialmente
 }
 
 // Cria e retorna uma matriz n x n com valores aleatórios.
@@ -51,27 +54,46 @@ void mostraGrid(){
 }
 
 void insereJogador() { 
-  float meioX = width / 2; //calcula o centro
-  float meioY = height /2; //calcula o centro
-  
-  float lc = width / (float)n; // Calcula a largura de cada célula.
-  float hc = height / (float)n; // Calcula a altura de cada célula.
-  
-  int y = int(meioY/ lc); // Calcula a coluna do jogador na grade.
-  int x = int(meioX / hc); // Calcula a linha do jogador na grade.
+ float lc = width / (float)n;
+  float hc = height / (float)n;
   
   fill(#0F2EF0);
-  rect(x * lc, y * hc, lc, hc);
-}
-  
-void movimentarJogador() {
-  
+  rect(jogadorX * lc, jogadorY * hc, lc, hc);
 }
 
+
+void moverJogador() {
+// Movimento do jogador apenas quando uma tecla é pressionada
+  if (keyPressed) {
+    int novaPosX = jogadorX;
+    int novaPosY = jogadorY;
+    
+    if (keyCode == UP && jogadorY > 0) {
+      novaPosY = jogadorY - 1;
+    } else if (keyCode == DOWN && jogadorY < n - 1) {
+      novaPosY = jogadorY + 1;
+    } else if (keyCode == LEFT && jogadorX > 0) {
+      novaPosX = jogadorX - 1;
+    } else if (keyCode == RIGHT && jogadorX < n - 1) {
+      novaPosX = jogadorX + 1;
+    }
+    
+    // Verifica se a nova posição é válida antes de atualizar a posição do jogador
+    if (novaPosX != jogadorX || novaPosY != jogadorY) {
+      // Verifica se o jogador não vai atravessar uma árvore
+      if (grid[novaPosY][novaPosX] != 2) {
+        jogadorX = novaPosX;
+        jogadorY = novaPosY;
+      }
+    }
+    delay(50); //Evita duplo clique
+  }
+}
 
 void draw(){
   mostraGrid(); // Mostra a grade atual na janela.
   insereJogador();
+  moverJogador();
   
   // Se o mouse é pressionado, reinicializa a grade com valores aleatórios.
   if(mousePressed) grid = criaGrid();
