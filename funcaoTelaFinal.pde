@@ -25,9 +25,28 @@ void telaFinal() {
  rect(width/2+largura/2, height/2, 50, altura-50);
  rect(width/2-largura/2, height/2, 100, altura-100);
  rect(width/2+largura/2, height/2, 100, altura-100);
+ 
+ int larguraBotao = 180;
+ int alturaBotao = 45;
+ 
+ //Sombra botão restart
+ fill(#34210C);
+ stroke(#34210C);
+ rectMode(CENTER);
+ rect(width/2, height-110+alturaBotao/2, larguraBotao, alturaBotao/4);
+ rect(width/2+larguraBotao/2, height-120+alturaBotao/2, larguraBotao/8, alturaBotao/4);
+ rect(width/2-larguraBotao/2, height-120+alturaBotao/2, larguraBotao/8, alturaBotao/4);
+
+ // Botão restart
+ fill(#795126);
+ stroke(#795126);
+ rectMode(CENTER);
+ rect(width/2, height-115, larguraBotao, alturaBotao);
+ rect(width/2+larguraBotao/2, height-115, larguraBotao/8, alturaBotao/2);
+ rect(width/2-larguraBotao/2, height-115, larguraBotao/8, alturaBotao/2);
 
  // Texto
- fonte = createFont("Courier New Bold Italic", 55);
+ fonte = createFont("Courier New Bold Italic", 50);
  textFont(fonte);
  fill(#4B240B);
  textAlign(CENTER);
