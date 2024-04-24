@@ -4,6 +4,8 @@ int[][] grid;
 int n = 15;
 // Posição do jogador na grade
 int jogadorX, jogadorY;
+// Variavel para verificar a qntde de vezes que draw é executado
+int tempo = 0;
 
 void setup(){
   size(600, 600); // Define o tamanho da janela de visualização.
@@ -84,8 +86,6 @@ void insereJogador() {
 
   fill(#0F2EF0);
   rect(jogadorX * lc, jogadorY * hc, lc, hc); 
-  
-  moveJogador();
 }
 
 void moveJogador() {
@@ -94,33 +94,37 @@ void moveJogador() {
   
 // Movimento do jogador apenas quando uma tecla é pressionada
   if (keyPressed) {
-
+    
     if (keyCode == UP && jogadorY > 0) {
+      print("cima  ");
       novaPosY = jogadorY - 1;
     } else if (keyCode == DOWN && jogadorY < n - 1) {
+      print("baixo  ");
       novaPosY = jogadorY + 1;
     } else if (keyCode == LEFT && jogadorX > 0) {
+      print("esquerda  ");
       novaPosX = jogadorX - 1;
     } else if (keyCode == RIGHT && jogadorX < n - 1) {
+      print("cima  direita");
       novaPosX = jogadorX + 1;
     }
 
-    // Verifica se a nova posição é válida antes de atualizar a posição do jogador
-    if (novaPosX != jogadorX || novaPosY != jogadorY) {
+
       // Verifica se o jogador não vai atravessar uma árvore
-      if (grid[novaPosY][novaPosX] != 2) {
+      if (grid[novaPosY][novaPosX] != 3) {
         jogadorX = novaPosX;
         jogadorY = novaPosY;
       }
-    }
-    delay(50); //Evita duplo clique
+    
   }
 }
 
 void draw(){
+  tempo++;
+  
   mostraGrid(); // Mostra a grade atual na janela.
   insereJogador();
-  moveJogador();
+  if(tempo%2==0) moveJogador();
   
   // Se o mouse é pressionado, reinicializa a grade com valores aleatórios.
   if(mousePressed) grid = criaGrid();  
