@@ -1,0 +1,71 @@
+class Botao {
+  int x, y, l, h;
+  color cor, corAtual;
+  color sombra, sombraAtual;
+  String texto;
+  color corTexto, corTextoAtual;
+  int textoSize;
+  color corHightLight = 0, sombraHightLight = 225, corTextoHightLight = 255;
+  boolean pressed;
+
+  Botao(int x, int y, int l, int h, color cor, color sombra, String texto, color corTexto, int textoSize) {
+    this.x = x;
+    this.y = y;
+    this.l = l;
+    this.h = h;
+    this.cor = cor;
+    this.corAtual = cor;
+    this.sombra = sombra;
+    this.sombraAtual = sombra;
+    this.texto = texto;
+    this.corTexto = corTexto;
+    this.corTextoAtual = corTexto;
+    this.textoSize = textoSize;
+    this.pressed = false;
+  }
+
+  void Show() {
+    
+    // Sombra do botao
+    fill(sombraAtual);
+    rect(x, y+h/4, l, h);
+    rect(x+l, y+h/2, l/16, h/2);
+    rect(x-l/16, y+h/2, l/16, h/2);
+
+    // Botao
+    fill(corAtual);
+    rect(x, y, l, h);
+    rect(x+l, y+h/4, l/16, h/2);
+    rect(x-l/16, y+h/4, l/16, h/2);
+
+    // Texto
+    fill(corTextoAtual);
+    textSize(textoSize);
+    text(texto, x+l/2, y+h/2+h/4);
+  }
+
+  boolean mouseHit(int alvoX, int alvoY, int alvoL, int alvoH) {
+    if ((mouseX >= alvoX && mouseX <= alvoX+alvoL) && (mouseY >= alvoY && mouseY <= alvoY+alvoH)) {
+      return true; // Mouse está emcima do botao
+    } else {
+      return false; // Mouse não está no botão
+    }
+  }
+
+  void Selecionado() { 
+    // Botao selecionado
+    if (mouseHit(restart.x, restart.y, restart.l, restart.h)) {
+      restart.corAtual = corHightLight;
+      restart.sombraAtual = sombraHightLight;
+      restart.corTextoAtual = corTextoHightLight;
+      
+      if(mousePressed) {
+        pressed = true;
+      } 
+    } else {
+      restart.corAtual = cor;
+      restart.sombraAtual = sombra;
+      restart.corTextoAtual = corTexto;
+    }
+  }
+}
