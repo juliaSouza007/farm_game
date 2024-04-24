@@ -4,33 +4,52 @@ int[][] grid;
 int n = 15;
 // Posição do jogador na grade
 int jogadorX, jogadorY;
-// Botao de restart
-Botao restart;
 
 void setup(){
   size(600, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
   grid = criaGrid(); // Inicializa a grade com valores aleatórios.
   jogadorX = jogadorY = n / 2; // Posiciona o jogador no centro da grade inicialmente
-  // Define o botao de restart que aparece na tela final
-  restart = new Botao(width/2-180/2, height-130, 180, 45, #795126, #34210C, "RESTART", #FFC85A, 35);
 }
 
 // Cria e retorna uma matriz n x n com valores aleatórios.
 int[][] criaGrid(){
+  limpaGrid();
+  int[][] m = new int[n][n];
+  
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      float randomValue = random(1); // Gera um número aleatório entre 0 e 1
+      
+       // Convertendo o número aleatório em um valor inteiro entre 0 e 2
+      int randomInt;
+      if (randomValue < 0.45) {
+        randomInt = 1; // Grama Baixa
+      } else if (randomValue < 0.9) {
+        randomInt = 2; // Grama Alta
+      } else {
+        randomInt = 3; // Árvore
+      }
+      
+      m[i][j] = randomInt; // Atribui o valor aleatório à célula da matriz
+    }
+  }
+  return m;
+}
+
+// Limpa os valores do grid
+int[][] limpaGrid(){
   int[][] m = new int[n][n];
   
   for(int i = 0; i < n; i++){
     for(int j = 0; j < n; j++){
       //m[i][j] = int(random(3)); // Atribui um valor aleatório entre 0 e 2 a cada célula.
-      m[i][j] = (random(1) < 0.3)? 1: m[i][j];
-      m[i][j] = (random(1) < 0.3)? 2: m[i][j];
-      m[i][j] = (random(1) < 0.3)? 3: m[i][j];
-      m[i][j] = (random(1) < 0.1)? 4: m[i][j];
+      m[i][j] = m[0][0];
     }
   }
   return m;
 }
+
 
 // Desenha a grade na janela de visualização.
 void mostraGrid(){
@@ -47,13 +66,10 @@ void mostraGrid(){
           fill(#2ECE37); // Grama Baixa.
           break;
         case 2:
-          fill(#3FB229); // Grama Media.
+          fill(#3FB229); // Grama Alta.
           break;
         case 3:
-          fill(#008E08); // Grama Alta
-          break;
-        case 4:
-          fill(#8E5800); // Árvore.
+          fill(#816500); // Arvore
           break;
       }
       // Desenha o retângulo representando a célula.
@@ -63,19 +79,22 @@ void mostraGrid(){
 }
 
 void insereJogador() { 
- float lc = width / (float)n;
+  float lc = width / (float)n;
   float hc = height / (float)n;
-  
+
   fill(#0F2EF0);
-  rect(jogadorX * lc, jogadorY * hc, lc, hc);
+  rect(jogadorX * lc, jogadorY * hc, lc, hc); 
+  
+  moveJogador();
 }
 
 
-void moverJogador() {
-// Movimento do jogador apenas quando uma tecla é pressionada
-  if (keyPressed) {
+void moveJogador() {
     int novaPosX = jogadorX;
     int novaPosY = jogadorY;
+  
+// Movimento do jogador apenas quando uma tecla é pressionada
+  if (keyPressed) {
     
     if (keyCode == UP && jogadorY > 0) {
       novaPosY = jogadorY - 1;
@@ -87,23 +106,26 @@ void moverJogador() {
       novaPosX = jogadorX + 1;
     }
     
-    // Verifica se a nova posição é válida antes de atualizar a posição do jogador
+    //Verifica se a nova posicao é valida
     if (novaPosX != jogadorX || novaPosY != jogadorY) {
-      // Verifica se o jogador não vai atravessar uma árvore
-      if (grid[novaPosY][novaPosX] != 4) {
-        jogadorX = novaPosX;
-        jogadorY = novaPosY;
-      }
+        // Verifica se o jogador não vai atravessar uma árvore
+        if (grid[novaPosY][novaPosX] != 3) {
+            jogadorX = novaPosX;
+            jogadorY = novaPosY;
+        } else { // Se houver uma árvore, o jogador não se move
+            novaPosX = jogadorX;
+            novaPosY = jogadorY;
+            println("Tentativa de movimento para uma célula com árvore");
+        }
     }
-    delay(50); //Evita duplo clique
   }
 }
 
 void draw(){
   mostraGrid(); // Mostra a grade atual na janela.
   insereJogador();
-  moverJogador();
+  moveJogador();
   
   // Se o mouse é pressionado, reinicializa a grade com valores aleatórios.
-  if(mousePressed) grid = criaGrid();
+  if(mousePressed) grid = criaGrid();  
 }
