@@ -88,14 +88,13 @@ void insereJogador() {
   moveJogador();
 }
 
-
 void moveJogador() {
     int novaPosX = jogadorX;
     int novaPosY = jogadorY;
   
 // Movimento do jogador apenas quando uma tecla é pressionada
   if (keyPressed) {
-    
+
     if (keyCode == UP && jogadorY > 0) {
       novaPosY = jogadorY - 1;
     } else if (keyCode == DOWN && jogadorY < n - 1) {
@@ -105,19 +104,16 @@ void moveJogador() {
     } else if (keyCode == RIGHT && jogadorX < n - 1) {
       novaPosX = jogadorX + 1;
     }
-    
-    //Verifica se a nova posicao é valida
+
+    // Verifica se a nova posição é válida antes de atualizar a posição do jogador
     if (novaPosX != jogadorX || novaPosY != jogadorY) {
-        // Verifica se o jogador não vai atravessar uma árvore
-        if (grid[novaPosY][novaPosX] != 3) {
-            jogadorX = novaPosX;
-            jogadorY = novaPosY;
-        } else { // Se houver uma árvore, o jogador não se move
-            novaPosX = jogadorX;
-            novaPosY = jogadorY;
-            println("Tentativa de movimento para uma célula com árvore");
-        }
+      // Verifica se o jogador não vai atravessar uma árvore
+      if (grid[novaPosY][novaPosX] != 2) {
+        jogadorX = novaPosX;
+        jogadorY = novaPosY;
+      }
     }
+    delay(50); //Evita duplo clique
   }
 }
 
