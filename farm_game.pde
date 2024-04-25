@@ -6,12 +6,17 @@ int n = 15;
 int jogadorX, jogadorY;
 // Variavel para verificar a qntde de vezes que draw é executado
 int tempo = 0;
+// Cria botao de restart
+Botao restart;
 
 void setup(){
   size(600, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
   grid = criaGrid(); // Inicializa a grade com valores aleatórios.
   jogadorX = jogadorY = n / 2; // Posiciona o jogador no centro da grade inicialmente
+  // Define o botao de restart que aparece na tela final
+  restart = new Botao(width/2-180/2, height-130, 180, 45, #795126, #34210C, "RESTART", #FFC85A, 35);
+
 }
 
 // Cria e retorna uma matriz n x n com valores aleatórios.
