@@ -54,18 +54,18 @@ class Botao {
 
   void Selecionado() { 
     // Botao selecionado
-    if (mouseHit(restart.x, restart.y, restart.l, restart.h)) {
-      restart.corAtual = corHightLight;
-      restart.sombraAtual = sombraHightLight;
-      restart.corTextoAtual = corTextoHightLight;
+    if (mouseHit(x, y, l, h)) {
+      corAtual = corHightLight;
+      sombraAtual = sombraHightLight;
+      corTextoAtual = corTextoHightLight;
       
       if(mousePressed) {
         pressed = true;
       } 
     } else {
-      restart.corAtual = cor;
-      restart.sombraAtual = sombra;
-      restart.corTextoAtual = corTexto;
+      corAtual = cor;
+      sombraAtual = sombra;
+      corTextoAtual = corTexto;
     }
   }
 }
