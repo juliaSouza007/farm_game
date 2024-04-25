@@ -4,11 +4,10 @@ class Botao {
   color sombra, sombraAtual;
   String texto;
   color corTexto, corTextoAtual;
-  int textoSize;
   color corHightLight = 0, sombraHightLight = 225, corTextoHightLight = 255;
   boolean pressed;
 
-  Botao(int x, int y, int l, int h, color cor, color sombra, String texto, color corTexto, int textoSize) {
+  Botao(int x, int y, int l, int h, color cor, color sombra, String texto, color corTexto) {
     this.x = x;
     this.y = y;
     this.l = l;
@@ -20,7 +19,6 @@ class Botao {
     this.texto = texto;
     this.corTexto = corTexto;
     this.corTextoAtual = corTexto;
-    this.textoSize = textoSize;
     this.pressed = false;
   }
 
@@ -40,7 +38,7 @@ class Botao {
 
     // Texto
     fill(corTextoAtual);
-    textSize(textoSize);
+    textSize(h * 2/3);
     text(texto, x+l/2, y+h/2+h/4);
   }
 
