@@ -1,3 +1,4 @@
+
 class Botao {
   int x, y, l, h;
   color cor, corAtual;
@@ -37,6 +38,7 @@ class Botao {
     rect(x-l/16, y+h/4, l/16, h/2);
 
     // Texto
+    textFont(fonte, 50);
     fill(corTextoAtual);
     textSize(h * 2/3);
     text(texto, x+l/2, y+h/2+h/4);
