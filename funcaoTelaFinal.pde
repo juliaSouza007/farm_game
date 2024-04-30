@@ -1,7 +1,6 @@
 void telaFinal() {
   if (restart.pressed==false) {
     noStroke();
-    PFont fonte;
 
     tela(width/2, height-100);
     
@@ -11,13 +10,13 @@ void telaFinal() {
       grid = criaGrid(); 
     }
 
-      // Texto
-      fonte = createFont("Courier New Bold Italic", 50);
-    textFont(fonte);
+    // Texto
+    textFont(title, 50);
     fill(#4B240B);
     textAlign(CENTER);
-    text("GAME OVER", width/2, 120);
-
+    text("GAME OVER", width/2, 130);
+    
+    textFont(fonte, 50);
     fill(#4B240B);
     textSize(30);
     text("SCORE:", width/2, 170);
