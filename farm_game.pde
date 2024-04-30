@@ -1,3 +1,4 @@
+
 // Declaração da matriz grid para armazenar o estado de cada célula.
 int[][] grid;
 // Número de células em cada dimensão da grade.
@@ -8,6 +9,10 @@ int jogadorX, jogadorY;
 int tempo = 0;
 // Cria botao de restart
 Botao restart;
+ // Fontes
+PFont fonte;
+PFont title;
+PFont itens;
 
 void setup(){
   size(600, 600); // Define o tamanho da janela de visualização.
@@ -15,8 +20,11 @@ void setup(){
   grid = criaGrid(); // Inicializa a grade com valores aleatórios.
   jogadorX = jogadorY = n / 2; // Posiciona o jogador no centro da grade inicialmente
   // Define o botao de restart que aparece na tela final
-  restart = new Botao(width/2-180/2, height-130, 180, 45, #795126, #34210C, "RESTART", #FFC85A, 35);
-
+  restart = new Botao(width/2-180/2, height-130, 180, 45, #795126, #34210C, "RESTART", #FFC85A);
+  // Fontes
+  fonte = createFont("Minecraft.ttf", 50);
+  title = createFont("Minecrafter.Reg.ttf", 50);
+  itens = createFont("minecraft_10.ttf", 50);
 }
 
 // Cria e retorna uma matriz n x n com valores aleatórios.
@@ -130,6 +138,7 @@ void draw(){
   mostraGrid(); // Mostra a grade atual na janela.
   insereJogador();
   if(tempo%2==0) moveJogador();
+  //telaFinal();
   
   // Se o mouse é pressionado, reinicializa a grade com valores aleatórios.
   if(mousePressed) grid = criaGrid();  
