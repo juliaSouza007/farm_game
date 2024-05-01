@@ -24,6 +24,8 @@ void telaFinal() {
     fill(#4B240B);
     textSize(30);
     text("INVENTORY:", width/2, 200);
+
+    inventory();
   }
 }
 
@@ -48,3 +50,22 @@ void telaFinal() {
     
     rectMode(0);
   }
+
+void inventory() {
+  int x = 300, y = 300;
+  int l = 80, h = 80;
+  // fundo
+  // Botao
+  fill(#F5D094);
+  rect(x, y, l, h);
+  rect(x+l, y+h/14, l/12, h*5/6);
+  rect(x-l/16, y+h/14, l/16, h*5/6);
+  
+  // Sombra do botao
+  fill(#D8B781);
+  rect(x, y-h/16, l, h/10);
+  rect(x+l, y+h/14, l/16, h/6);
+  rect(x-l/16, y+h/14, l/16, h/6);
+  rect(x+l-h/16, y-h/16, l/16, h/5);
+  rect(x-l/16+h/16, y-h/16, l/16, h/5);
+}
