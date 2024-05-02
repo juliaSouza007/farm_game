@@ -7,7 +7,7 @@ void telaFinal() {
     restart.Show();
     restart.Selecionado();
     if (restart.pressed) {
-      grid = criaGrid(); 
+      grid = cenario.criaGrid(); 
     }
 
     // Texto
