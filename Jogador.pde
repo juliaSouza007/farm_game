@@ -1,8 +1,8 @@
 class Jogador {
-      // Posição do jogador na grade
-      int jogadorX, jogadorY;
       //numero de celulas
       int n = nCelulas();
+      // Posição do jogador na grade
+      int jogadorX, jogadorY;
       //int color
       color cor = Personagem();
   
@@ -10,8 +10,6 @@ class Jogador {
         // Posiciona o jogador no centro da grade inicialmente
         jogadorX = jogadorY = n / 2; 
       }
-      
-      
       
       void insereJogador() { 
         float lc = width / (float)cenario.n;
