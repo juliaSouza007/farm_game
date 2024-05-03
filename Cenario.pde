@@ -1,14 +1,16 @@
+
 class Cenario {
-    int n = nCelulas();
+    int n = nLinha();
+    int c = nColuna();
 
     // Cria e retorna uma matriz n x n com valores aleatórios.
     int[][] criaGrid(){
       
         limpaGrid();
-        int[][] m = new int[n][n];
+        int[][] m = new int[n][c];
         
         for(int i = 0; i < n; i++){
-          for(int j = 0; j < n; j++){
+          for(int j = 0; j < c; j++){
             float randomValue = random(1); // Gera um número aleatório entre 0 e 1
             
              // Convertendo o número aleatório em um valor inteiro entre 1 e 3
@@ -29,10 +31,10 @@ class Cenario {
     
     // Limpa os valores do grid
     int[][] limpaGrid(){
-      int[][] m = new int[n][n];
+      int[][] m = new int[n][c];
       
       for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
+        for(int j = 0; j < c; j++){
           m[i][j] = m[0][0];
         }
       }
@@ -42,11 +44,11 @@ class Cenario {
     
     // Desenha a grade na janela de visualização.
     void mostraGrid(){
-      float l = width / (float)n; // Calcula a largura de cada célula.
+      float l = width / (float)c; // Calcula a largura de cada célula.
       float h = height / (float)n; // Calcula a altura de cada célula.
       
       for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
+        for(int j = 0; j < c; j++){
           stroke(200); // Define a cor das bordas das células.
           
           // Define a cor de preenchimento com base no valor da célula.
