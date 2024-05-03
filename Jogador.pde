@@ -1,6 +1,8 @@
+
 class Jogador {
       //numero de celulas
-      int n = nCelulas();
+      int n = nLinha();
+      int c = nColuna();
       // Posição do jogador na grade
       int jogadorX, jogadorY;
       //int color
@@ -12,8 +14,8 @@ class Jogador {
       }
       
       void insereJogador() { 
-        float lc = width / (float)cenario.n;
-        float hc = height / (float)cenario.n;
+        float lc = width / (float)n;
+        float hc = height / (float)c;
       
         fill(cor);
         rect(jogadorX * lc, jogadorY * hc, lc, hc); 
@@ -29,7 +31,7 @@ class Jogador {
           if (keyCode == UP && jogadorY > 0) {
             print("cima  ");
             novaPosY = jogadorY - 1;
-          } else if (keyCode == DOWN && jogadorY < n - 1) {
+          } else if (keyCode == DOWN && jogadorY < c - 1) {
             print("baixo  ");
             novaPosY = jogadorY + 1;
           } else if (keyCode == LEFT && jogadorX > 0) {
