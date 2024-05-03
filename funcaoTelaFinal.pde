@@ -1,31 +1,41 @@
 void telaFinal() {
-  if (restart.pressed==false) {
+  if (restart.pressed==false && back.pressed==false) {
     noStroke();
-
+   
     tela(width/2, height-100);
     
     restart.Show();
     restart.Selecionado();
     if (restart.pressed) {
       grid = cenario.criaGrid(); 
+      // Atualiza a posicao do jogador no centro da grade
+      player.jogadorX = num / 2; 
+      player.jogadorY = num / 2;
     }
 
+    back.Show();
+    back.Selecionado();
+    if (back.pressed) {
+      delay(100);
+      play.pressed = false;
+    }
+    
     // Texto
     textFont(title, 50);
     fill(#4B240B);
     textAlign(CENTER);
-    text("GAME OVER", width/2, 130);
+    text("game over", width/2, 160);
     
     textFont(fonte, 50);
     fill(#4B240B);
-    textSize(30);
-    text("SCORE:", width/2, 170);
+    textSize(25);
+    text("SCORE:", width/2, 220);
 
     fill(#4B240B);
-    textSize(30);
-    text("INVENTORY:", width/2, 200);
+    textSize(25);
+    text("INVENTORY:", width/2, 250);
 
-    inventory();
+    inventory(120, 300, 60, 60);
   }
 }
 
@@ -51,21 +61,23 @@ void telaFinal() {
     rectMode(0);
   }
 
-void inventory() {
-  int x = 300, y = 300;
-  int l = 80, h = 80;
-  // fundo
-  // Botao
-  fill(#F5D094);
-  rect(x, y, l, h);
-  rect(x+l, y+h/14, l/12, h*5/6);
-  rect(x-l/16, y+h/14, l/16, h*5/6);
+void inventory(int x, int y, int l, int h) {
   
-  // Sombra do botao
-  fill(#D8B781);
-  rect(x, y-h/16, l, h/10);
-  rect(x+l, y+h/14, l/16, h/6);
-  rect(x-l/16, y+h/14, l/16, h/6);
-  rect(x+l-h/16, y-h/16, l/16, h/5);
-  rect(x-l/16+h/16, y-h/16, l/16, h/5);
+  for (int i = 0; i <= 4*(l+l/4); i+=l+l/4) {
+    for (int j = 0; j < 2*(h+h/6); j+=h+h/6) {
+      // fundo
+      fill(#E8C68F);
+      rect(x+i, y+j, l, h);
+      rect(x+l+i, y+h/14+j, l/16, h*5/6);
+      rect(x-l/16+i, y+h/14+j, l/16, h*5/6);
+      
+      // Sombra
+      fill(#D8B781);
+      rect(x+i, y-h/16+j, l, h/10);
+      rect(x+l+i, y+h/14+j, l/16, h/6);
+      rect(x-l/16+i, y+h/14+j, l/16, h/6);
+      rect(x+l-h/16+i, y-h/16+j, l/16, h/5);
+      rect(x-l/16+h/16+i, y-h/16+j, l/16, h/5);
+    }
+  }
 }
