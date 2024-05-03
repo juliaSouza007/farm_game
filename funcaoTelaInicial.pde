@@ -3,7 +3,6 @@ int num = 11;
 //cor personagem
 color cor;
 
-
 void telaInicial () {
   if (play.pressed==false) {
     noStroke();
@@ -12,39 +11,35 @@ void telaInicial () {
     
     play.Show();
     play.Selecionado();
-    if (play.pressed) {
-      grid = cenario.criaGrid(); 
-    }
+    
+    exit.Show();
+    exit.Selecionado();
     
     mais.Show();
     mais.Selecionado();
     if (mais.pressed) {
-      num++;
-      cenario.n = num;
+      num++; // Aumenta o numero de celulas
+      cenario.n = num; // Atualiza o numero de celulas
+      player.n = num; // Atualiza o numero de celulas
+      // Atualiza a posicao do jogador no centro da grade
+      player.jogadorX = num / 2; 
+      player.jogadorY = num / 2;
+      grid = cenario.criaGrid(); // Cria um novo grid com a nova quantidade de celulas
+      mais.pressed = false;
     }
     
     menos.Show();
     menos.Selecionado();
     if (menos.pressed) {
       if (num > 11) {
-        num--;
-        cenario.n = num;
-      }
-    }
-    
-    mais.Show();
-    mais.Selecionado();
-    if (mais.pressed) {
-      num++;
-      cenario.n = num;
-    }
-    
-    menos.Show();
-    menos.Selecionado();
-    if (menos.pressed) {
-      if (num > 11) {
-        num--;
-        cenario.n = num;
+        num--; // Reduz o numero de celulas
+        cenario.n = num; // Atualiza o numero de celulas
+        player.n = num; // Atualiza o numero de celulas
+        // Atualiza a posicao do jogador no centro da grade
+        player.jogadorX = num / 2; 
+        player.jogadorY = num / 2;
+        grid = cenario.criaGrid(); // Cria um novo grid com a nova quantidade de celulas
+        menos.pressed = false;
       }
     }
 
@@ -56,13 +51,13 @@ void telaInicial () {
     
     textFont(title, 50);
     fill(#4B240B);
-    textSize(30);
-    text("NUMERO DE CELULAS", width/2, 370);
+    textSize(25);
+    text("NUMERO DE CELULAS", width/2, 310);
     
     textFont(title, 50);
     fill(#4B240B);
-    textSize(30);
-    text("PERSONAGEM", width/2, 240);
+    textSize(25);
+    text("PERSONAGEM", width/2, 200);
   }
 }
 
