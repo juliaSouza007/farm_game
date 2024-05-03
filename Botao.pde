@@ -1,3 +1,4 @@
+
 class Botao {
   int x, y, l, h;
   color cor, corAtual;
