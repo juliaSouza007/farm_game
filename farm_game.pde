@@ -19,9 +19,13 @@ PFont itens;
 Jogador player;
 // Cria o Grid
 Cenario cenario;
+int score = 0; // Pontuação inicial do jogador
+int startTime; // Tempo de início do jogo
+int time; // Tempo atual do jogo
+int duracao = 120000; // Duração do jogo em milissegundos (2 minutos)
 
 void setup(){
-  size(800, 600); // Define o tamanho da janela de visualização.
+  size(600, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
   
   // Define os botoes da tela inicial
