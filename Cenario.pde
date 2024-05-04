@@ -5,8 +5,8 @@ int[][] grid;
 int tempo = 0;
 // Cria botoes
 Botao restart;
-Botao mais;
-Botao menos;
+Botao maisLinha, maisColuna;
+Botao menosLinha, menosColuna;
 Botao play;
 Botao exit;
 Botao back;
@@ -28,8 +28,10 @@ void setup(){
   // Define os botoes da tela inicial
   play = new Botao(width/2-180/2, height-180, 180, 45, #795126, #34210C, "PLAY", #FFC85A, 30);
   exit = new Botao(width/2-180/2, height-110, 180, 35, #795126, #34210C, "EXIT", #FFC85A, 25);
-  mais = new Botao(160, height-270, 100, 40, #795126, #34210C, "+", #FFC85A, 30);
-  menos = new Botao(340, height-270, 100, 40, #795126, #34210C, "-", #FFC85A, 30);
+  maisLinha = new Botao(170, height-240, 100, 30, #795126, #34210C, "+", #FFC85A, 25);
+  menosLinha = new Botao(330, height-240, 100, 30, #795126, #34210C, "-", #FFC85A, 30);
+  maisColuna = new Botao(170, height-240, 100, 30, #795126, #34210C, "+", #FFC85A, 25);
+  menosColuna = new Botao(330, height-240, 100, 30, #795126, #34210C, "-", #FFC85A, 30);
   
   // Define a grade
   cenario = new Cenario();
