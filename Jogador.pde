@@ -15,8 +15,8 @@ class Jogador {
   }
 
   void insereJogador() {
-    float lc = width / (float)n;
-    float hc = height / (float)c;
+    float lc = width / (float)c;
+    float hc = height / (float)n;
 
     fill(cor);
     rect(jogadorX * lc, jogadorY * hc, lc, hc);
@@ -32,13 +32,13 @@ class Jogador {
       if (keyCode == UP && jogadorY > 0) {
         print("cima  ");
         novaPosY = jogadorY - 1;
-      } else if (keyCode == DOWN && jogadorY < c - 1) {
+      } else if (keyCode == DOWN && jogadorY < n - 1) {
         print("baixo  ");
         novaPosY = jogadorY + 1;
       } else if (keyCode == LEFT && jogadorX > 0) {
         print("esquerda  ");
         novaPosX = jogadorX - 1;
-      } else if (keyCode == RIGHT && jogadorX < n - 1) {
+      } else if (keyCode == RIGHT && jogadorX < c - 1) {
         print("direita");
         novaPosX = jogadorX + 1;
       }
