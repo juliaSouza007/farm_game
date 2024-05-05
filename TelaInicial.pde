@@ -1,83 +1,116 @@
-void telaFinal() {
-  if (restart.pressed==false && back.pressed==false) {
-    noStroke();
-   
-    tela(width/2, height-100);
-    
-    restart.Show();
-    restart.Selecionado();
-    if (restart.pressed) {
-      grid = cenario.criaGrid(); 
-      // Atualiza a posicao do jogador no centro da grade
-      player.jogadorX = linhas / 2; 
-      player.jogadorY = colunas / 2;
-    }
+//numero de celulas
+int linhas = 11;
+int colunas = 13;
+//cor personagem
+color cor;
 
-    back.Show();
-    back.Selecionado();
-    if (back.pressed) {
-      delay(100);
-      play.pressed = false;
-    }
-    
-    // Texto
-    textFont(title, 50);
-    fill(#4B240B);
-    textAlign(CENTER);
-    text("game over", width/2, 160);
-    
-    textFont(fonte, 50);
-    fill(#4B240B);
-    textSize(25);
-    text("SCORE:", width/2, 220);
+void telaInicial () {
+  noStroke();
 
-    fill(#4B240B);
-    textSize(25);
-    text("INVENTORY:", width/2, 250);
+  tela(width/2, height-100);
 
-    inventory(120, 300, 60, 60);
+  play.Show();
+  play.Selecionado();
+
+  exit.Show();
+  exit.Selecionado();
+
+  maisLinha.Show();
+  maisLinha.Selecionado();
+  if (maisLinha.pressed) {
+    linhas++; // Aumenta o numero de linhas
+
+    // Atualiza o numero de linhas
+    cenario.n = linhas;
+    player.n = linhas;
+
+    // Atualiza a posicao do jogador no centro da grade
+    player.jogadorY = linhas / 2;
+
+    grid = cenario.criaGrid(); // Cria um novo grid com a nova quantidade de celulas
+    maisLinha.pressed = false;
   }
+
+  menosLinha.Show();
+  menosLinha.Selecionado();
+  if (menosLinha.pressed) {
+    if (linhas > 11) {
+      linhas--; // Reduz o numero de linhas
+
+      // Atualiza o numero de linhas
+      cenario.n = linhas;
+      player.n = linhas;
+
+      // Atualiza a posicao do jogador no centro da grade
+      player.jogadorY = linhas / 2;
+
+      grid = cenario.criaGrid(); // Cria um novo grid com a nova quantidade de celulas
+      menosLinha.pressed = false;
+    }
+  }
+
+  maisColuna.Show();
+  maisColuna.Selecionado();
+  if (maisColuna.pressed) {
+    colunas++; // Aumenta o numero de colunas
+
+    // Atualiza o numero de colunas
+    cenario.c = colunas;
+    player.c = colunas;
+
+    // Atualiza a posicao do jogador no centro da grade
+    player.jogadorX = colunas / 2;
+
+    grid = cenario.criaGrid(); // Cria um novo grid com a nova quantidade de celulas
+    maisColuna.pressed = false;
+  }
+
+  menosColuna.Show();
+  menosColuna.Selecionado();
+  if (menosColuna.pressed) {
+    if (colunas > 10) {
+      colunas--; // Reduz o numero de colunas
+
+      // Atualiza o numero de colunas
+      cenario.c = colunas;
+      player.c = colunas;
+
+      // Atualiza a posicao do jogador no centro da grade
+      player.jogadorX = colunas / 2;
+
+      grid = cenario.criaGrid(); // Cria um novo grid com a nova quantidade de celulas
+      menosColuna.pressed = false;
+    }
+  }
+
+  // Texto
+  textFont(title, 50);
+  fill(#4B240B);
+  textAlign(CENTER);
+  text("minecraft", width/2, 150);
+
+  textFont(fonte, 50);
+  fill(#4B240B);
+  textSize(18);
+  text("NUMERO\n DE LINHAS:", width/2-100, height-310);
+  text("NUMERO\n DE COLUNAS:", width/2+90, height-310);
+
+  textFont(title, 50);
+  fill(#4B240B);
+  textSize(25);
+  text("PERSONAGEM", width/2, 200);
+
 }
 
-  void tela(int largura, int altura) {
-    rectMode(CENTER);
+int nLinha (){
+    return linhas;
+}
 
-    // Sombra
-    fill(#AA8F45);
-    rect(width/2, height/2+25, largura, altura);
-    rect(width/2-largura/2, height/2+25, 50, altura-50);
-    rect(width/2+largura/2, height/2+25, 50, altura-50);
-    rect(width/2-largura/2, height/2+25, 100, altura-100);
-    rect(width/2+largura/2, height/2+25, 100, altura-100);
+int nColuna (){
+    return colunas;
+}
 
-    //Fundo
-    fill(#FAE2A2);
-    rect(width/2, height/2, largura, altura);
-    rect(width/2-largura/2, height/2, 50, altura-50);
-    rect(width/2+largura/2, height/2, 50, altura-50);
-    rect(width/2-largura/2, height/2, 100, altura-100);
-    rect(width/2+largura/2, height/2, 100, altura-100);
-    
-    rectMode(0);
-  }
-
-void inventory(int x, int y, int l, int h) {
-  
-  for (int i = 0; i <= 4*(l+l/4); i+=l+l/4) {
-    for (int j = 0; j < 2*(h+h/6); j+=h+h/6) {
-      // fundo
-      fill(#E8C68F);
-      rect(x+i, y+j, l, h);
-      rect(x+l+i, y+h/14+j, l/16, h*5/6);
-      rect(x-l/16+i, y+h/14+j, l/16, h*5/6);
-      
-      // Sombra
-      fill(#D8B781);
-      rect(x+i, y-h/16+j, l, h/10);
-      rect(x+l+i, y+h/14+j, l/16, h/6);
-      rect(x-l/16+i, y+h/14+j, l/16, h/6);
-      rect(x+l-h/16+i, y-h/16+j, l/16, h/5);
-      rect(x-l/16+h/16+i, y-h/16+j, l/16, h/5);
-    }
-  }
+color Personagem(){
+    cor = color((int)random(225), (int)random(225), (int)random(225));
+    return cor;
 }
