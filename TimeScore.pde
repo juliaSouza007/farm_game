@@ -22,5 +22,5 @@ void drawScore() {
   fill(0); // Define a cor do texto como preto
   textAlign(RIGHT); // Alinha o texto à direita
   textSize(20); // Define o tamanho do texto
-  text("Score: " + score, width - 10, 30); // Mostra a pontuação na tela
+  text("Score: " + score, width - 80, 30); // Mostra a pontuação na tela
 }
