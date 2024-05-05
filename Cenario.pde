@@ -1,3 +1,4 @@
+        
 
 class Cenario {
     int n = nLinha();
