@@ -11,7 +11,7 @@ Botao exit;
 Botao back;
 Botao pause;
 Botao continua;
- // Fontes
+// Fontes
 PFont fonte;
 PFont title;
 PFont itens;
@@ -22,67 +22,74 @@ Cenario cenario;
 int score = 0; // Pontuação inicial do jogador
 int startTime; // Tempo de início do jogo
 int time; // Tempo atual do jogo
-int duracao = 120000; // Duração do jogo em milissegundos (2 minutos)
+int duracao = 12000; // Duração do jogo em milissegundos (2 minutos)
 
-void setup(){
+void setup() {
   size(600, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
-  
+
   // Define os botoes da tela inicial
   play = new Botao(width/2-180/2, height-180, 180, 45, #795126, #34210C, "PLAY", #FFC85A, 30);
   exit = new Botao(width/2-180/2, height-110, 180, 35, #795126, #34210C, "EXIT", #FFC85A, 25);
-  maisLinha = new Botao(170, height-240, 100, 30, #795126, #34210C, "+", #FFC85A, 25);
-  menosLinha = new Botao(330, height-240, 100, 30, #795126, #34210C, "-", #FFC85A, 30);
-  maisColuna = new Botao(170, height-240, 100, 30, #795126, #34210C, "+", #FFC85A, 25);
-  menosColuna = new Botao(330, height-240, 100, 30, #795126, #34210C, "-", #FFC85A, 30);
-  
+  maisLinha = new Botao(width/2-140, height-280, 80, 30, #795126, #34210C, "+", #FFC85A, 20);
+  menosLinha = new Botao(width/2-140, height-235, 80, 30, #795126, #34210C, "-", #FFC85A, 25);
+  maisColuna = new Botao(width/2+50, height-280, 80, 30, #795126, #34210C, "+", #FFC85A, 20);
+  menosColuna = new Botao(width/2+50, height-235, 80, 30, #795126, #34210C, "-", #FFC85A, 25);
+
   // Define a grade
   cenario = new Cenario();
   grid = cenario.criaGrid(); // Inicializa a grade com valores aleatórios.
-  
+
   // Define o botoes da tela de pausa
-  pause = new Botao(width-90, 10, 80, 40, #795126, #34210C, "||", #FFC85A, 30);
+  pause = new Botao(width-90, 45, 80, 40, #795126, #34210C, "||", #FFC85A, 30);
   continua = new Botao(width/2-180/2, height-180, 180, 45, #795126, #34210C, "CONTINUE", #FFC85A, 30);
-  
+
   // Define os botoes da tela final
   restart = new Botao(155, height-140, 135, 45, #795126, #34210C, "RESTART", #FFC85A, 25);
   back = new Botao(320, height-140, 125, 45, #795126, #34210C, "BACK", #FFC85A, 25);
-  
+
   // Define o jogador
   player = new Jogador();
-  
+
   // Fontes
   fonte = createFont("Minecraft.ttf", 50);
   title = createFont("Minecrafter.Reg.ttf", 50);
   itens = createFont("minecraft_10.ttf", 50);
   
+  startTime = millis(); // Inicia a contagem do tempo
+
   telaInicial();
 }
 
-void draw(){
+void draw() {
   tempo++;
   cenario.mostraGrid(); // Mostra a grade atual na janela.
-  
-  if (play.pressed==false) {
-    telaInicial(); // Mostra a tela inicial
-    
-  } else {
-    player.insereJogador(); // Insere o jogador 
-    
+
+  if (play.pressed) {
+    player.insereJogador(); // Insere o jogador
+
     // Mostra o botao de pause
     noStroke();
+    textAlign(CENTER);
     pause.Show();
     pause.Selecionado();
     if (pause.pressed) {
-        pausa();
-        continua.pressed = false;
-      }
+      pausa();
+      continua.pressed = false;
+    }
+
+    drawTimer(); // Desenha o temporizador
+    drawScore(); // Desenha a pontuação
+
+    time = millis() - startTime; // Calcula o tempo decorrido
+
+    if (time >= duracao) { // Verifica se o tempo acabou
+      telaFinal(); // Chama a função de fim de jogo
+    }
+    
+  } else {
+    telaInicial(); // Mostra a tela inicial
   }
   
-  if (tempo >= 50) {
-    telaFinal();
-  }
- 
-  if(tempo%1/5==0) player.moveJogador();
-  
+  if (tempo%1/5==0) player.moveJogador();
 }
