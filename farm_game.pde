@@ -25,7 +25,7 @@ int time; // Tempo atual do jogo
 int duracao = 12000; // Duração do jogo em milissegundos (2 minutos)
 
 void setup() {
-  size(600, 600); // Define o tamanho da janela de visualização.
+  size(800, 600); // Define o tamanho da janela de visualização.
   frameRate(10); // Define a taxa de atualização da janela.
 
   // Define os botoes da tela inicial
