@@ -15,6 +15,8 @@ void telaFinal() {
 
       score = 0; // Reinicia a pontuação
       startTime = millis(); // Reinicia o tempo
+      
+      restart.pressed = false;
     }
 
     back.Show();
@@ -22,6 +24,7 @@ void telaFinal() {
     if (back.pressed) {
       delay(100);
       play.pressed = false;
+      back.pressed = false;
     }
 
     // Texto
@@ -38,7 +41,7 @@ void telaFinal() {
     textSize(25);
     text("INVENTORY:", width/2, 250);
 
-    inventory(120, 300, 60, 60);
+    inventory(width/2-180, height/2, 60, 60);
 
     // Garante que mostre a tela de pause apenas durante uma partida
     pause.pressed = false;
