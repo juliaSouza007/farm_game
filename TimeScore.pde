@@ -1,3 +1,4 @@
+
 void drawTimer() {
   int tempores = duracao - time; // Calcula o tempo restante
   int segundos = tempores / 1000; // Converte para segundos
