@@ -1,4 +1,5 @@
 
+
 class Jogador {
   //numero de celulas
   int n = nLinha();
@@ -23,31 +24,33 @@ class Jogador {
   }
 
   void moveJogador() {
-    int novaPosX = jogadorX;
-    int novaPosY = jogadorY;
+    if (time < duracao) {
+      int novaPosX = jogadorX;
+      int novaPosY = jogadorY;
 
-    // Movimento do jogador apenas quando uma tecla é pressionada
-    if (keyPressed) {
+      // Movimento do jogador apenas quando uma tecla é pressionada
+      if (keyPressed) {
 
-      if (keyCode == UP && jogadorY > 0) {
-        print("cima  ");
-        novaPosY = jogadorY - 1;
-      } else if (keyCode == DOWN && jogadorY < n - 1) {
-        print("baixo  ");
-        novaPosY = jogadorY + 1;
-      } else if (keyCode == LEFT && jogadorX > 0) {
-        print("esquerda  ");
-        novaPosX = jogadorX - 1;
-      } else if (keyCode == RIGHT && jogadorX < c - 1) {
-        print("direita");
-        novaPosX = jogadorX + 1;
-      }
+        if (keyCode == UP && jogadorY > 0) {
+          print("cima  ");
+          novaPosY = jogadorY - 1;
+        } else if (keyCode == DOWN && jogadorY < n - 1) {
+          print("baixo  ");
+          novaPosY = jogadorY + 1;
+        } else if (keyCode == LEFT && jogadorX > 0) {
+          print("esquerda  ");
+          novaPosX = jogadorX - 1;
+        } else if (keyCode == RIGHT && jogadorX < c - 1) {
+          print("direita");
+          novaPosX = jogadorX + 1;
+        }
 
 
-      // Verifica se o jogador não vai atravessar uma árvore
-      if (grid[novaPosY][novaPosX] != 3) {
-        jogadorX = novaPosX;
-        jogadorY = novaPosY;
+        // Verifica se o jogador não vai atravessar uma árvore
+        if (grid[novaPosY][novaPosX] != 3) {
+          jogadorX = novaPosX;
+          jogadorY = novaPosY;
+        }
       }
     }
   }
