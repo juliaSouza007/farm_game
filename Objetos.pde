@@ -17,7 +17,7 @@ class Objetos {
 
 ListaEncadeada<Objetos> lista = new ListaEncadeada<Objetos>();
 
-void setup() {
+/*void setup() {
   size(800, 600);
   for (int i = 0; i < 10; i++) {
     Objetos obj = new Objetos();
@@ -31,4 +31,4 @@ void draw() {
   // Por exemplo:
   background(255);
   lista.print(); // Imprimir objetos na lista
-}
+}*/
