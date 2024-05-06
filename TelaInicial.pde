@@ -11,6 +11,13 @@ void telaInicial () {
 
   play.Show();
   play.Selecionado();
+  if (play.pressed) {
+    startTime = millis(); // Inicia a contagem do tempo
+ 
+    // Atualiza a posicao do jogador no centro da grade
+      player.jogadorX = colunas / 2;
+      player.jogadorY = linhas / 2;
+  }
 
   exit.Show();
   exit.Selecionado();
