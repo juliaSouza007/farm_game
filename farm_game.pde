@@ -21,8 +21,10 @@ Jogador player;
 Cenario cenario;
 int score = 0; // Pontuação inicial do jogador
 int startTime; // Tempo de início do jogo
+int pauseTime; //pausar 
 int time; // Tempo atual do jogo
 int duracao = 12000; // Duração do jogo em milissegundos (2 minutos)
+boolean pausado = false;
 
 void setup() {
   size(800, 600); // Define o tamanho da janela de visualização.
@@ -45,8 +47,8 @@ void setup() {
   continua = new Botao(width/2-180/2, height-180, 180, 45, #795126, #34210C, "CONTINUE", #FFC85A, 30);
 
   // Define os botoes da tela final
-  restart = new Botao(155, height-140, 135, 45, #795126, #34210C, "RESTART", #FFC85A, 25);
-  back = new Botao(320, height-140, 125, 45, #795126, #34210C, "BACK", #FFC85A, 25);
+  restart = new Botao(width/2-145, height-140, 135, 45, #795126, #34210C, "RESTART", #FFC85A, 25);
+  back = new Botao(width/2+20, height-140, 125, 45, #795126, #34210C, "BACK", #FFC85A, 25);
 
   // Define o jogador
   player = new Jogador();
@@ -55,8 +57,6 @@ void setup() {
   fonte = createFont("Minecraft.ttf", 50);
   title = createFont("Minecrafter.Reg.ttf", 50);
   itens = createFont("minecraft_10.ttf", 50);
-  
-  startTime = millis(); // Inicia a contagem do tempo
 
   telaInicial();
 }
@@ -66,6 +66,7 @@ void draw() {
   cenario.mostraGrid(); // Mostra a grade atual na janela.
 
   if (play.pressed) {
+    
     player.insereJogador(); // Insere o jogador
 
     // Mostra o botao de pause
@@ -74,14 +75,17 @@ void draw() {
     pause.Show();
     pause.Selecionado();
     if (pause.pressed) {
+      pausado = true;
       pausa();
       continua.pressed = false;
     }
 
     drawTimer(); // Desenha o temporizador
     drawScore(); // Desenha a pontuação
-
-    time = millis() - startTime; // Calcula o tempo decorrido
+  
+    if (pausado == false) {
+      time = millis() - startTime; // Calcula o tempo decorrido
+    }
 
     if (time >= duracao) { // Verifica se o tempo acabou
       telaFinal(); // Chama a função de fim de jogo
