@@ -22,9 +22,11 @@ Cenario cenario;
 int score = 0; // Pontuação inicial do jogador
 int startTime; // Tempo de início do jogo
 int pauseTime; //pausar 
-int time; // Tempo atual do jogo
+double time; // Tempo atual do jogo
 int duracao = 12000; // Duração do jogo em milissegundos (2 minutos)
 boolean pausado = false;
+double totalpause;
+Objetos item = new Objetos();
 
 void setup() {
   size(800, 600); // Define o tamanho da janela de visualização.
@@ -67,6 +69,10 @@ void draw() {
 
   if (play.pressed) {
     
+    //if(tempo%100!=0){
+      item.sortearObjeto();
+      item.drawItem(item.i, cenario.l, cenario.h);
+   //}
     player.insereJogador(); // Insere o jogador
 
     // Mostra o botao de pause
@@ -86,10 +92,23 @@ void draw() {
     if (pausado == false) {
       time = millis() - startTime; // Calcula o tempo decorrido
     }
+    
+    if (pausado == true) {
+      totalpause += (millis() - time);
+    }
+    
+    if (continua.pressed) {
+      if (millis() - startTime >= 12000 + totalpause) {
+         time = millis() - startTime - totalpause;
+      }
+    }
 
     if (time >= duracao) { // Verifica se o tempo acabou
       telaFinal(); // Chama a função de fim de jogo
     }
+    
+  } else if (exit.pressed) {
+    exit();
     
   } else {
     telaInicial(); // Mostra a tela inicial
