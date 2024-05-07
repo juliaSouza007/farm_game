@@ -1,5 +1,3 @@
-
-
 class Jogador {
   //numero de celulas
   int n = nLinha();
