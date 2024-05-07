@@ -14,6 +14,7 @@ void pausa() {
 
     continua.Show();
     continua.Selecionado();
+
     if (continua.pressed) {
       pause.pressed = false;
       pausado = false;
