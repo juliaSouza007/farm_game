@@ -1,5 +1,5 @@
 void telaFinal() {
-  if (restart.pressed==false && back.pressed==false) {
+  if (restart.pressed==false || back.pressed==false) {
     noStroke();
     textAlign(CENTER);
 
