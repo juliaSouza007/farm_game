@@ -106,7 +106,6 @@ void telaInicial () {
   fill(#4B240B);
   textSize(25);
   text("PERSONAGEM", width/2, 200);
-
 }
 
 int nLinha (){
