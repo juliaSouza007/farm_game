@@ -28,9 +28,14 @@ class ListaEncadeada<T> {
     }
   }
 
-  void clear() {
-    head = null;
-  }
+ void clear() {
+    while (head != null) {
+        No<T> proximo = head.next;
+        head.next = null; // Desconecta o nó da lista
+        head = proximo; // Move a cabeça para o próximo nó
+    }
+    listSize = 0; // Redefine o tamanho da lista para 0
+}
 
   void print() {
     No<T> atual = head;
