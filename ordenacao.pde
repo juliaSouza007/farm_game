@@ -1,19 +1,10 @@
-int n = 20;
-int[] array = new int[n];
-int i = -1, j = -1, x;
-
 // TRABALHO
 Objetos item = new Objetos();
 ListaEncadeada<Objetos> lista = new ListaEncadeada<Objetos>();
 
 void setup() {
   size(800, 600); // Define o tamanho da tela
-  for (int i = 0; i < array.length; i++) {
-    array[i] = (int) random(height); // Atribui valores aleatórios ao array
-  }
-
-  //thread("ordenar"); // Executa paralelamente a função ordernar com a função draw
-
+  
   // TRABALHO : adiciona uma sequencia de itens na lista
   for (int i = 0; i < 10; i++) {
     Objetos tmp = new Objetos();
@@ -26,6 +17,8 @@ void setup() {
 
     lista.add(tmp);
   }
+  
+  thread("ordenar"); // Executa paralelamente a função ordernar com a função draw
 
   // TRABALHO
   print();
@@ -33,7 +26,6 @@ void setup() {
 
 void draw() {
   background(220); // Define a cor de fundo
-  int l = width / n; // Defile a largura dos retângulos
 }
 
 // TRABALHO : Print os itens da lista
@@ -49,32 +41,32 @@ void print() {
 void ordenar() {
   while (true) {
     shellSort(lista);
-    break;
   }
 }
 
 // TRABALHO : ShellSort
 void shellSort(ListaEncadeada<Objetos> lista) {
   int n = lista.listSize; // Tamanho da lista
-  x = 1;
+  int x = 1;
+  int j;
 
   // Define de quanto em quanto serão feita as primeiras comparações
   while (x < n/3) x = (3*x) + 1;
 
   while (x >= 1) {
 
-    for (i = 0; i < n; i++) {
-      int temp = lista.get(i).i;
+    for (int i = 0; i < n; i++) {
+      Objetos temp = lista.get(i);
       j = i;
 
       // Compara o valor com outro valor que é x posições distante entre eles
       // Caso necessário, eles trocam de lugar
-      while (j >= x && lista.get(j - x).i > temp) {
-        lista.get(j).i = lista.get(j - x).i;
+      while (j >= x && lista.get(j - x).i > temp.i) {
+        lista.set(j, lista.get(j - x));
         j = j - x;
       }
 
-      lista.get(j).i = temp;
+      lista.set(j, temp);
     }
 
     // A distancia entre as comparações vão diminuindo
@@ -127,8 +119,22 @@ class ListaEncadeada<T> {
         return atual.item;
       }
       atual = atual.next;
+      i++;
     }
     return null;
+  }
+
+  void set(int indice, T novoItem) {
+    int i = 0;
+
+    No<T> atual = head;
+    while (atual != null) {
+      if (i == indice) {
+        atual.item = novoItem;
+      }
+      atual = atual.next;
+      i++;
+    }
   }
 
   void print() {
@@ -193,7 +199,7 @@ class Objetos {
   }
 
   void print() {
-    println(objetos[i]);
+    println(i);
     println();
   }
 }
