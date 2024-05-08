@@ -15,8 +15,12 @@ void telaInicial () {
     startTime = millis(); // Inicia a contagem do tempo
  
     // Atualiza a posicao do jogador no centro da grade
-      player.jogadorX = colunas / 2;
-      player.jogadorY = linhas / 2;
+    player.jogadorX = colunas / 2;
+    player.jogadorY = linhas / 2;
+      
+    // Sorteando primeira posicao dos itens a serem gerados
+    item.sortearObjeto();
+    item.sorteiaPosicao(cenario.l, cenario.h);
   }
 
   exit.Show();
