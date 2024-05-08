@@ -23,7 +23,7 @@ int score = 0; // Pontuação inicial do jogador
 int startTime; // Tempo de início do jogo
 int pauseTime; //pausar 
 double time; // Tempo atual do jogo
-int duracao = 12000; // Duração do jogo em milissegundos (2 minutos)
+int duracao = 120000; // Duração do jogo em milissegundos (2 minutos)
 boolean pausado = false;
 double totalpause;
 Objetos item = new Objetos();
@@ -59,7 +59,7 @@ void setup() {
   fonte = createFont("Minecraft.ttf", 50);
   title = createFont("Minecrafter.Reg.ttf", 50);
   itens = createFont("minecraft_10.ttf", 50);
-
+  
   telaInicial();
 }
 
@@ -68,11 +68,15 @@ void draw() {
   cenario.mostraGrid(); // Mostra a grade atual na janela.
 
   if (play.pressed) {
-    
-    //if(tempo%100!=0){
+
+    if(item.gerarItem() == true){
       item.sortearObjeto();
-      item.drawItem(item.i, cenario.l, cenario.h);
-   //}
+      item.sorteiaPosicao(cenario.l, cenario.h);
+    }
+    
+   item.drawItem(item.i, cenario.h);
+    
+    
     player.insereJogador(); // Insere o jogador
 
     // Mostra o botao de pause
