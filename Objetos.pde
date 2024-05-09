@@ -1,68 +1,89 @@
-class Jogador {
-  //numero de celulas
-  int n = nLinha();
-  int c = nColuna();
-  int personagem = Personagem();
-  // Posição do jogador na grade
-  private int jogadorX, jogadorY;
-  //int color
-  color cor = Personagem();
+class Objetos {
+  public char[] objetos = {'a', 'C', 'E', 'F', 'n', 'm', 'e', 'G', 'M', 'P'};
+  int posX;
+  int posY;
+  int i;
+  int valor;
+  int ultimoObjeto = 0;
+  boolean mostrarItem = true;
 
-  Jogador () {
-    // Posiciona o jogador no centro da grade inicialmente
-    jogadorX = c / 2;
-    jogadorY = n / 2;
+  void sortearObjeto() {
+    this.i = (int)random(0, 9); //(int) random(0, objetos.length);
+    this.valor = this.i + 1;
   }
 
-  void insereJogador() {
-    float lc = width / (float)c;
-    float hc = height / (float)n;
+  void sorteiaPosicao(float largura, float altura) {
+    boolean posicaoOK = false;
 
-    /*if (personagem == 2) {
-      //abobora
-      textFont(itens, 25);
-      fill(#FFAB03);
-      rect(jogadorX * lc, jogadorY * hc, lc, hc);
-      //fill(#000000);
-      //text("K", jogadorX * lc + 20, hc);
-    }*/
-    fill(cor);
-    rect(jogadorX * lc, jogadorY * hc, lc, hc);
-  }
+    // Arredonda os valores de l e h para o inteiro mais próximo
+    largura = round(largura);
+    altura = round(altura);
 
-  void moveJogador() {
-    if (time < duracao) {
-      int novaPosX = jogadorX;
-      int novaPosY = jogadorY;
+    // Calcula o número de segmentos ao longo de cada eixo
+    int SegX = (int)(width / largura);
+    int SegY = (int)(height / altura);
 
-      // Movimento do jogador apenas quando uma tecla é pressionada
-      if (keyPressed) {
+    // Loop até encontrar uma posição válida
+    while (!posicaoOK) {
+      // Gera índices de segmento aleatórios para cada eixo
+      int tmpX = (int)(random(0, SegX)) * (int)largura;
+      int tmpY = (int)(random(0, SegY)) * (int)altura;
 
-        if (keyCode == UP && jogadorY > 0) {
-          novaPosY = jogadorY - 1;
-        } else if (keyCode == DOWN && jogadorY < n - 1) {
-          novaPosY = jogadorY + 1;
-        } else if (keyCode == LEFT && jogadorX > 0) {
-          novaPosX = jogadorX - 1;
-        } else if (keyCode == RIGHT && jogadorX < c - 1) {
-          novaPosX = jogadorX + 1;
-        }
+      // Verifica se a posição gerada é um múltiplo de l e h
+      if (tmpX % (int)largura == 0 && tmpY % (int)altura == 0) {
 
-
-        // Verifica se o jogador não vai atravessar uma árvore
-        if (grid[novaPosY][novaPosX] != 3) {
-          jogadorX = novaPosX;
-          jogadorY = novaPosY;
-        }
+        // Define a posição do objeto, considerando o centro do segmento
+        this.posX = tmpX + (int)largura / 2;
+        this.posY = tmpY + (int)altura / 2; // Adiciona 20 para deslocamento vertical
+        posicaoOK = true; // Indica que a posição é válida e encerra o loop
       }
     }
   }
-  
-  //getters 
-  public int getJogadorX () {
-      return jogadorX;
+
+  int drawItem(int i, float y, Jogador jogador, ListaEncadeada inventario, int score) {
+    int objY = calcularPosicaoY(posY, jogador);
+    int objX = calculaPosicaoX(posX, jogador);
+    if (mostrarItem) {
+      // Adiciona o objeto à lista e soma o score quando o jogador passa sobre ele 
+      if (jogador.getJogadorX() == objX && jogador.getJogadorY() == objY) {
+        Objetos tmp = new Objetos();
+        
+        tmp.i = this.i;
+        tmp.valor = this.valor;
+        
+        inventario.add(tmp);
+        
+        score += tmp.valor;
+        mostrarItem = false;
+        
+      } else {
+        textAlign(CENTER);
+        textFont(itens, y - 8);
+        fill(0);
+        text(""+objetos[i], posX, posY + 20);
+      }
+    }
+    
+    return score;
   }
-  public int getJogadorY () {
-      return jogadorY;
+
+
+  boolean gerarItem() {
+    int tempoAtual = millis();
+
+    if (tempoAtual - ultimoObjeto >= 10000) {
+      ultimoObjeto = tempoAtual;
+      mostrarItem = true;
+      return true;
+    }
+    return false;
+  }
+
+  int calcularPosicaoY (int posY, Jogador jogador) {
+    return posY / (600/jogador.n);
+  }
+
+  int calculaPosicaoX (int posX, Jogador jogador) {
+    return posX / (800/jogador.c);
   }
 }
