@@ -52,7 +52,7 @@ class Cenario {
 
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < c; j++) {
-        stroke(200); // Define a cor das bordas das células.
+        noStroke(); 
 
         // Define a cor de preenchimento com base no valor da célula.
         switch(grid[i][j]) {
