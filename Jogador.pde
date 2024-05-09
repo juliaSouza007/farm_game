@@ -2,7 +2,7 @@ class Jogador {
   //numero de celulas
   int n = nLinha();
   int c = nColuna();
-  int personagem = personagem();
+  int personagem = Personagem();
   // Posição do jogador na grade
   private int jogadorX, jogadorY;
   //int color
