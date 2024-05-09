@@ -10,7 +10,7 @@ void pausa() {
     textAlign(CENTER);
     text("invetario", width/2, 200);
 
-    inventory(width/2-180, height/2-50, 60, 60);
+    inventario.inventory(width/2-180, height/2-50, 60, 60);
 
     continua.Show();
     continua.Selecionado();
