@@ -2,8 +2,9 @@ class Jogador {
   //numero de celulas
   int n = nLinha();
   int c = nColuna();
+  int personagem = personagem();
   // Posição do jogador na grade
-  int jogadorX, jogadorY;
+  private int jogadorX, jogadorY;
   //int color
   color cor = Personagem();
 
@@ -17,6 +18,14 @@ class Jogador {
     float lc = width / (float)c;
     float hc = height / (float)n;
 
+    /*if (personagem == 2) {
+      //abobora
+      textFont(itens, 25);
+      fill(#FFAB03);
+      rect(jogadorX * lc, jogadorY * hc, lc, hc);
+      //fill(#000000);
+      //text("K", jogadorX * lc + 20, hc);
+    }*/
     fill(cor);
     rect(jogadorX * lc, jogadorY * hc, lc, hc);
   }
@@ -30,16 +39,12 @@ class Jogador {
       if (keyPressed) {
 
         if (keyCode == UP && jogadorY > 0) {
-          print("cima  ");
           novaPosY = jogadorY - 1;
         } else if (keyCode == DOWN && jogadorY < n - 1) {
-          print("baixo  ");
           novaPosY = jogadorY + 1;
         } else if (keyCode == LEFT && jogadorX > 0) {
-          print("esquerda  ");
           novaPosX = jogadorX - 1;
         } else if (keyCode == RIGHT && jogadorX < c - 1) {
-          print("direita");
           novaPosX = jogadorX + 1;
         }
 
@@ -51,5 +56,13 @@ class Jogador {
         }
       }
     }
+  }
+  
+  //getters 
+  public int getJogadorX () {
+      return jogadorX;
+  }
+  public int getJogadorY () {
+      return jogadorY;
   }
 }
