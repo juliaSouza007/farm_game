@@ -13,35 +13,29 @@ class ListaEncadeada<T> {
   int listSize = 0;
 
   void add(T item) {
-    No<T> newNo = new No<T>(item);
-
-    if (head == null) {
-      head = newNo;
-      listSize++;
-    } else {
-      No<T> newItem = head;
-      while (newItem.next != null) {
-        newItem = newItem.next;
+      No<T> newNo = new No<T>(item);
+  
+      if (head == null) {
+          head = newNo;
+      } else {
+          No<T> end = head; // Corrigido para especificar o tipo de No<T>
+          while (end.next != null) {
+              end = end.next;
+          }
+          end.next = newNo;
       }
-      newItem.next = newNo;
       listSize++;
-    }
   }
 
- void clear() {
-    while (head != null) {
-        No<T> proximo = head.next;
-        head.next = null; // Desconecta o nó da lista
-        head = proximo; // Move a cabeça para o próximo nó
-    }
-    listSize = 0; // Redefine o tamanho da lista para 0
-}
+  void clear() {
+    head = null;
+  }
 
   void print() {
     No<T> atual = head;
     while (atual != null) {
       println(atual.item);
-      atual = atual.next;
+      atual= atual.next;
     }
     println();
   }
