@@ -21,12 +21,13 @@ Jogador player;
 Cenario cenario;
 int score = 0; // Pontuação inicial do jogador
 int startTime; // Tempo de início do jogo
-int pauseTime; //pausar 
+int pauseTime; //pausar
 double time; // Tempo atual do jogo
-int duracao = 120000; // Duração do jogo em milissegundos (2 minutos)
+int duracao = 24000; // Duração do jogo em milissegundos (2 minutos)
 boolean pausado = false;
 double totalpause;
 Objetos item = new Objetos();
+ListaEncadeada inventario = new ListaEncadeada();
 
 void setup() {
   size(800, 600); // Define o tamanho da janela de visualização.
@@ -59,7 +60,7 @@ void setup() {
   fonte = createFont("Minecraft.ttf", 50);
   title = createFont("Minecrafter.Reg.ttf", 50);
   itens = createFont("minecraft_10.ttf", 50);
-  
+
   telaInicial();
 }
 
@@ -69,14 +70,13 @@ void draw() {
 
   if (play.pressed) {
 
-    if(item.gerarItem() == true){
+    if (item.gerarItem() == true) {
       item.sortearObjeto();
       item.sorteiaPosicao(cenario.l, cenario.h);
     }
-    
-   item.drawItem(item.i, cenario.h, player);
-    
-    
+
+    score = item.drawItem(item.i, cenario.h, player, inventario, score);
+
     player.insereJogador(); // Insere o jogador
 
     // Mostra o botao de pause
@@ -92,31 +92,29 @@ void draw() {
 
     drawTimer(); // Desenha o temporizador
     drawScore(); // Desenha a pontuação
-  
+
     if (pausado == false) {
       time = millis() - startTime; // Calcula o tempo decorrido
     }
-    
+
     if (pausado == true) {
       totalpause += (millis() - time);
     }
-    
+
     if (continua.pressed) {
       if (millis() - startTime >= 12000 + totalpause) {
-         time = millis() - startTime - totalpause;
+        time = millis() - startTime - totalpause;
       }
     }
 
     if (time >= duracao) { // Verifica se o tempo acabou
       telaFinal(); // Chama a função de fim de jogo
     }
-    
   } else if (exit.pressed) {
     exit();
-    
   } else {
     telaInicial(); // Mostra a tela inicial
   }
-  
+
   if (tempo%1/5==0) player.moveJogador();
 }
