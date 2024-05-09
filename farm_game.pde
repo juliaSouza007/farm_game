@@ -23,7 +23,7 @@ int score = 0; // Pontuação inicial do jogador
 int startTime; // Tempo de início do jogo
 int pauseTime; //pausar
 double time; // Tempo atual do jogo
-int duracao = 24000; // Duração do jogo em milissegundos (2 minutos)
+int duracao = 120000; // Duração do jogo em milissegundos (2 minutos)
 boolean pausado = false;
 double totalpause;
 Objetos item = new Objetos();
