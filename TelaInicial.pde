@@ -1,8 +1,8 @@
 //numero de celulas
 int linhas = 11;
 int colunas = 13;
-//cor personagem
-color cor;
+//personagem - creeper ou cabeca de abobora
+int personagem = 1;
 
 void telaInicial () {
   noStroke();
@@ -93,6 +93,20 @@ void telaInicial () {
       menosColuna.pressed = false;
     }
   }
+  
+  player1.Show();
+  player1.Selecionado();
+  if (player1.pressed) {
+    personagem = 1; // define o personagem como 1
+    player.personagem = 1; // atualiza o personagem
+  }
+  
+  player2.Show();
+  player2.Selecionado();
+  if (player2.pressed) {
+    personagem = 2; // define o personagem como 1
+    player.personagem = 2; // atualiza o personagem
+  }
 
   // Texto
   textFont(title, 50);
@@ -106,10 +120,24 @@ void telaInicial () {
   text("NUMERO\n DE LINHAS:", width/2-100, height-310);
   text("NUMERO\n DE COLUNAS:", width/2+90, height-310);
 
-  textFont(title, 50);
+  textFont(fonte, 50);
   fill(#4B240B);
   textSize(25);
-  text("PERSONAGEM", width/2, 200);
+  text("PERSONAGEM:", width/2, 200);
+  
+  //creeper
+  textFont(itens, 52);
+  fill(#047415);
+  rect(width/2-112, height-382, 26, 25);
+  fill(#000000);
+  text("A", width/2-98, height-358);
+  
+  //abobora
+  textFont(itens, 22);
+  fill(#FFAB03);
+  rect(width/2+78, height-382, 25, 25);
+  fill(#000000);
+  text("K", width/2+92, height-358);
 }
 
 int nLinha (){
@@ -120,7 +148,6 @@ int nColuna (){
     return colunas;
 }
 
-color Personagem(){
-    cor = color((int)random(225), (int)random(225), (int)random(225));
-    return cor;
+int Personagem(){
+  return personagem;
 }
