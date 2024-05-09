@@ -74,24 +74,3 @@ void tela(int largura, int altura) {
 
   rectMode(0);
 }
-
-void inventory(int x, int y, int l, int h,  ListaEncadeada inventario) {
-  
-  for (int i = 0; i <= 4*(l+l/4); i+=l+l/4) {
-    for (int j = 0; j < 2*(h+h/6); j+=h+h/6) {
-      // fundo
-      fill(#E8C68F);
-      rect(x+i, y+j, l, h);
-      rect(x+l+i, y+h/14+j, l/16, h*5/6);
-      rect(x-l/16+i, y+h/14+j, l/16, h*5/6);
-
-      // Sombra
-      fill(#D8B781);
-      rect(x+i, y-h/16+j, l, h/10);
-      rect(x+l+i, y+h/14+j, l/16, h/6);
-      rect(x-l/16+i, y+h/14+j, l/16, h/6);
-      rect(x+l-h/16+i, y-h/16+j, l/16, h/5);
-      rect(x-l/16+h/16+i, y-h/16+j, l/16, h/5);
-    }
-  }
-}
