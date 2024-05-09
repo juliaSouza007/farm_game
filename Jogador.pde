@@ -5,8 +5,6 @@ class Jogador {
   int personagem = Personagem();
   // Posição do jogador na grade
   private int jogadorX, jogadorY;
-  //int color
-  color cor = Personagem();
 
   Jogador () {
     // Posiciona o jogador no centro da grade inicialmente
@@ -18,16 +16,25 @@ class Jogador {
     float lc = width / (float)c;
     float hc = height / (float)n;
 
-    /*if (personagem == 2) {
+    if (personagem == 2) {
       //abobora
-      textFont(itens, 25);
+      textFont(itens, hc - 10);
       fill(#FFAB03);
       rect(jogadorX * lc, jogadorY * hc, lc, hc);
-      //fill(#000000);
-      //text("K", jogadorX * lc + 20, hc);
-    }*/
-    fill(cor);
-    rect(jogadorX * lc, jogadorY * hc, lc, hc);
+      fill(#000000);
+      textAlign(CENTER);
+      text("K", jogadorX * lc + 32, jogadorY * hc + (hc - 4));
+    } else {
+      //creeper
+      textFont(itens, hc + 40);
+      fill(#047415);
+      rect(jogadorX * lc, jogadorY * hc, lc, hc);
+      fill(#000000);
+      textAlign(CENTER);
+      text("A", jogadorX * lc + 32, jogadorY * hc + (hc - 7));
+    }
+    //fill(cor);
+    //rect(jogadorX * lc, jogadorY * hc, lc, hc);
   }
 
   void moveJogador() {
