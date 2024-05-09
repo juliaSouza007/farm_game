@@ -15,6 +15,7 @@ void telaFinal() {
 
       score = 0; // Reinicia a pontuação
       startTime = millis(); // Reinicia o tempo
+      inventario.clear(); // Limpa inventario
       
       restart.pressed = false;
     }
@@ -25,6 +26,9 @@ void telaFinal() {
       delay(100);
       play.pressed = false;
       back.pressed = false;
+      
+      score = 0; // Reinicia a pontuação
+      inventario.clear(); // Limpa inventario
     }
 
     // Texto
@@ -40,8 +44,9 @@ void telaFinal() {
     fill(#4B240B);
     textSize(25);
     text("INVENTORY:", width/2, 250);
-
-    inventory(width/2-180, height/2, 60, 60);
+    
+    inventario.shellSort();
+    inventario.inventory(width/2-180, height/2, 60, 60);
 
     // Garante que mostre a tela de pause apenas durante uma partida
     pause.pressed = false;
@@ -70,8 +75,8 @@ void tela(int largura, int altura) {
   rectMode(0);
 }
 
-void inventory(int x, int y, int l, int h) {
-
+void inventory(int x, int y, int l, int h,  ListaEncadeada inventario) {
+  
   for (int i = 0; i <= 4*(l+l/4); i+=l+l/4) {
     for (int j = 0; j < 2*(h+h/6); j+=h+h/6) {
       // fundo
