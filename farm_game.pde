@@ -74,7 +74,7 @@ void draw() {
       item.sorteiaPosicao(cenario.l, cenario.h);
     }
     
-   item.drawItem(item.i, cenario.h);
+   item.drawItem(item.i, cenario.h, player);
     
     
     player.insereJogador(); // Insere o jogador
