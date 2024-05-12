@@ -8,7 +8,7 @@ class Objetos {
   boolean mostrarItem = true;
 
   void sortearObjeto() {
-    this.i = (int)random(0, 10); //(int) random(0, objetos.length + 1), não inclui o valor máximo (length);
+    this.i = (int)random(0, 10);
     this.valor = this.i + 1;
   }
 
