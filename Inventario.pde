@@ -233,13 +233,11 @@ class ListaEncadeada {
 
     // Continua até que a distância entre as comparações seja 1
     while (x >= 1) {
-
       // Percorre a lista
       for (int i = 0; i < n; i++) {
         // Cria um objeto temporário para armazenar o elemento atual
         Objetos temp = get(i);
         j = i;
-
 
         // Compara o valor com outro valor que é x posições distante entre eles
         // Caso necessário, eles trocam de lugar
@@ -247,10 +245,8 @@ class ListaEncadeada {
           set(j, get(j - x));
           j = j - x;
         }
-
         set(j, temp);
       }
-
       // A distancia entre as comparações vai diminuindo
       x = x/3;
     }
