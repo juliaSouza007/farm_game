@@ -33,8 +33,6 @@ class Jogador {
       textAlign(CENTER);
       text("A", jogadorX * lc + 32, jogadorY * hc + (hc - 7));
     }
-    //fill(cor);
-    //rect(jogadorX * lc, jogadorY * hc, lc, hc);
   }
 
   void moveJogador() {
