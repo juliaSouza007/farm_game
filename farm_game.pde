@@ -102,7 +102,7 @@ void draw() {
     }
 
     if (continua.pressed) {
-      if (millis() - startTime >= 12000 + totalpause) {
+      if (millis() - startTime >= 120000 + totalpause) {
         time = millis() - startTime - totalpause;
       }
     }
