@@ -45,17 +45,10 @@ class Botao {
     text(texto, x+l/2, y+h/2+h/4);
   }
 
-  boolean mouseHit(int alvoX, int alvoY, int alvoL, int alvoH) {
-    if ((mouseX >= alvoX && mouseX <= alvoX+alvoL) && (mouseY >= alvoY && mouseY <= alvoY+alvoH)) {
-      return true; // Mouse está emcima do botao
-    } else {
-      return false; // Mouse não está no botão
-    }
-  }
-
   void Selecionado() { 
     // Botao selecionado
-    if (mouseHit(x, y, l, h)) {
+    // Verifica se o mouse está em cima do botao
+    if ((mouseX >= x && mouseX <= x+l) && (mouseY >= y && mouseY <= y+h)) {
       corAtual = corHightLight;
       sombraAtual = sombraHightLight;
       corTextoAtual = corTextoHightLight;
