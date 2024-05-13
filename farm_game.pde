@@ -11,6 +11,7 @@ Botao exit;
 Botao back;
 Botao pause;
 Botao continua;
+Botao player1, player2;
 // Fontes
 PFont fonte;
 PFont title;
@@ -40,7 +41,9 @@ void setup() {
   menosLinha = new Botao(width/2-140, height-235, 80, 30, #795126, #34210C, "-", #FFC85A, 25);
   maisColuna = new Botao(width/2+50, height-280, 80, 30, #795126, #34210C, "+", #FFC85A, 20);
   menosColuna = new Botao(width/2+50, height-235, 80, 30, #795126, #34210C, "-", #FFC85A, 25);
-
+  player1 = new Botao(width/2-140, height-385, 80, 30, #795126, #34210C, " ", #FFC85A, 25);
+  player2 = new Botao(width/2+50, height-385, 80, 30, #795126, #34210C, " ", #FFC85A, 20);
+  
   // Define a grade
   cenario = new Cenario();
   grid = cenario.criaGrid(); // Inicializa a grade com valores aleatórios.
@@ -102,7 +105,7 @@ void draw() {
     }
 
     if (continua.pressed) {
-      if (millis() - startTime >= 120000 + totalpause) {
+      if (millis() - startTime >= 12000 + totalpause) {
         time = millis() - startTime - totalpause;
       }
     }
