@@ -33,6 +33,8 @@ class Jogador {
       textAlign(CENTER);
       text("A", jogadorX * lc + 32, jogadorY * hc + (hc - 7));
     }
+    //fill(cor);
+    //rect(jogadorX * lc, jogadorY * hc, lc, hc);
   }
 
   void moveJogador() {
@@ -42,6 +44,7 @@ class Jogador {
 
       // Movimento do jogador apenas quando uma tecla é pressionada
       if (keyPressed) {
+
         if (keyCode == UP && jogadorY > 0) {
           novaPosY = jogadorY - 1;
         } else if (keyCode == DOWN && jogadorY < n - 1) {
@@ -51,6 +54,7 @@ class Jogador {
         } else if (keyCode == RIGHT && jogadorX < c - 1) {
           novaPosX = jogadorX + 1;
         }
+
 
         // Verifica se o jogador não vai atravessar uma árvore
         if (grid[novaPosY][novaPosX] != 3) {
