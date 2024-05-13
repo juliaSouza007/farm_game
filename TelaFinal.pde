@@ -34,7 +34,7 @@ void telaFinal() {
     // Texto
     textFont(title, 50);
     fill(#4B240B);
-    text("game over", width/2, 160);
+    text("time's over", width/2, 160);
 
     textFont(fonte, 50);
     fill(#4B240B);
