@@ -32,9 +32,9 @@ void telaFinal() {
     }
 
     // Texto
-    textFont(title, 50);
+    textFont(title, 48);
     fill(#4B240B);
-    text("time's over", width/2, 160);
+    text("time is over", width/2, 160);
 
     textFont(fonte, 50);
     fill(#4B240B);
