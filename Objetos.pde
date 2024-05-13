@@ -28,17 +28,19 @@ class Objetos {
       // Gera índices de segmento aleatórios para cada eixo
       int tmpX = (int)(random(0, SegX)) * (int)largura;
       int tmpY = (int)(random(0, SegY)) * (int)altura;
-      
+
       int x = calculaPosicaoX (tmpY, player);
       int y = calculaPosicaoY (tmpX, player);
 
       // Verifica se a posição gerada é um múltiplo de l e h
       if (tmpX % (int)largura == 0 && tmpY % (int)altura == 0) {
-        if (grid[x][y] == 1 || grid[x][y] == 2) {
-          // Define a posição do objeto, considerando o centro do segmento
-          this.posX = tmpX + (int)largura / 2;
-          this.posY = tmpY + (int)altura / 2; // Adiciona 20 para deslocamento vertical
-          posicaoOK = true; // Indica que a posição é válida e encerra o loop
+        if (x < cenario.n && y < cenario.c) {
+          if (grid[x][y] == 1 || grid[x][y] == 2) {
+            // Define a posição do objeto, considerando o centro do segmento
+            this.posX = tmpX + (int)largura / 2;
+            this.posY = tmpY + (int)altura / 2; // Adiciona 20 para deslocamento vertical
+            posicaoOK = true; // Indica que a posição é válida e encerra o loop
+          }
         }
       }
     }
@@ -48,19 +50,18 @@ class Objetos {
     int objY = calculaPosicaoY(posY, jogador);
     int objX = calculaPosicaoX(posX, jogador);
     if (mostrarItem) {
-      // Adiciona o objeto à lista e soma o score quando o jogador passa sobre ele 
+      // Adiciona o objeto à lista e soma o score quando o jogador passa sobre ele
       if (jogador.getJogadorX() == objX && jogador.getJogadorY() == objY) {
         Objetos tmp = new Objetos();
-        
+
         tmp.i = this.i;
         tmp.valor = this.valor;
-        
+
         inventario.add(tmp);
-        
+
         score += tmp.valor;
         mostrarItem = false;
         player.insereJogador(); // Insere o jogador
-        
       } else {
         textAlign(CENTER);
         textFont(itens, y - 8);
@@ -68,7 +69,7 @@ class Objetos {
         text(""+objetos[i], posX, posY + 20);
       }
     }
-    
+
     return score;
   }
 
